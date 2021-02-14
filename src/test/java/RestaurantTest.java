@@ -78,4 +78,12 @@ class RestaurantTest {
                 ()->restaurant.removeFromMenu("French fries"));
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    //New Feature by TDD
+    @Test
+    public void adding_items_from_menu_should_ultimately_give_you_total_price(){
+        Restaurant menuList = null;
+        Double amount = 3.0;
+        Receipt receipt = restaurant.totalPrice(menuList,amount);
+    }
 }
