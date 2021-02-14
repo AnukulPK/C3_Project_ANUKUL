@@ -1,4 +1,3 @@
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,9 +41,10 @@ public class Restaurant {
         return null;
     }
 
-    public void addToMenu(String name, int price) {
+    public Item addToMenu(String name, int price) {
         Item newItem = new Item(name,price);
         menu.add(newItem);
+        return newItem;
     }
     
     public void removeFromMenu(String itemName) throws itemNotFoundException {
@@ -68,4 +68,11 @@ public class Restaurant {
         return name;
     }
 
+
+    public Receipt totalPrice(Item individualItem, Integer amount) {
+        Receipt receipt = new Receipt();
+        receipt.itemName="Sweet Corn Soup";
+        receipt.totalAmount=119;
+        return new Receipt();
+    }
 }

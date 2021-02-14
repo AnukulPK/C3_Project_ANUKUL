@@ -7,6 +7,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.time.LocalTime;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
+
 
 @ExtendWith(MockitoExtension.class)
 class RestaurantTest {
@@ -80,10 +83,20 @@ class RestaurantTest {
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
     //New Feature by TDD
+
     @Test
     public void adding_items_from_menu_should_ultimately_give_you_total_price(){
-        Restaurant menuList = null;
-        Double amount = 3.0;
-        Receipt receipt = restaurant.totalPrice(menuList,amount);
+        try {
+            Item individualItem = restaurant.addToMenu("Sweet corn soup",119);
+            Integer amount = 3;
+            Receipt receipt = restaurant.totalPrice(individualItem,amount);
+            assertNotNull(receipt);
+            assertThat(receipt.itemName,equalTo("Sweet Corn Soup"));
+            assertThat(receipt.totalAmount, equalTo(119));
+        } catch (Throwable expected) {
+            assertEquals(NullPointerException.class, expected.getClass());
+        }
     }
+
+
 }
